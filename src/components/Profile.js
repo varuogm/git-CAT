@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-//import DisplayTable from "./DisplayTable";
 import { Heading, Box, Flex, Badge, Text } from "@chakra-ui/react";
 import { chakra, Button, ButtonGroup, Image } from "@chakra-ui/react"
 import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
-//import { Center, Square, Circle } from "@chakra-ui/react"
-//import { Divider, Link } from '@chakra-ui/layout';
 import CAT from '../../src/Kitty.gif';
 
 const Profile = () => {
-  //const [data, setData] = useState({});
+
   const [username, setUsername] = useState("");
   const [loc, setLoc] = useState("?");
-  // const [company, setComapany] = useState("?");
   const [Bio, setBio] = useState("");
   const [userImg, setuserImg] = useState("https://thumbs.dreamstime.com/b/happy-bear-family-characters-teddy-bear-family-happy-bear-family-characters-teddy-bear-family-vector-123893392.jpg");
   const [followers, setFollowers] = useState("");
@@ -20,7 +16,7 @@ const Profile = () => {
   const [Name, setName] = useState("");
 
   const [Show, setShow] = useState(false);
-  //const [repositories, setRepositories] = useState([]);
+
 
   const onChangeHandler = e => {
     setUsername(e.target.value);
@@ -136,8 +132,6 @@ const Profile = () => {
                 Made with  ❤️ and 🐱
               </Text>
             </Box>
-
-
           </Box>
         </div>
       </div>
