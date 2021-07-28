@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Heading, Box, Flex, Badge, Text } from "@chakra-ui/react";
 import { chakra, Button, ButtonGroup, Image } from "@chakra-ui/react"
-import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
+import { IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
 import CAT from '../../src/Kitty.gif';
+
 
 const Profile = () => {
 
@@ -133,6 +134,7 @@ const Profile = () => {
               </Text>
             </Box>
           </Box>
+
         </div>
       </div>
 
