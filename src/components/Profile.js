@@ -84,9 +84,11 @@ const Profile = () => {
             type="submit"
 
             onClick={submitHandler}>
-            Click me
+            lets Find Out
           </chakra.button>
 
+          {//horizontal card remaining
+          }
           {Show == true &&
             <Box p="5" maxW="320px" >
               <Image src={userImg} />
@@ -105,7 +107,7 @@ const Profile = () => {
                   fontSize="m"
                   fontWeight="bold"
                   color="yellow.500" >
-                  stars - 99
+                  todo stars - 99
                 </Text>
               </Flex>
 
@@ -119,7 +121,7 @@ const Profile = () => {
               <Flex mt={5} align="center">
                 <Box color="orange.400" />
                 <Text ml={1} fontSize="sm">
-                  <b>4.84</b> (190)
+                  <b>todo data</b> todo another data
                 </Text>
               </Flex>
             </Box>
