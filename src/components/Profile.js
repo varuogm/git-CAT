@@ -51,6 +51,14 @@ const Profile = () => {
       setName(profileJson.name);
 
     }
+    if (username == "") {
+      setuserImg("https://thumbs.dreamstime.com/b/happy-bear-family-characters-teddy-bear-family-happy-bear-family-characters-teddy-bear-family-vector-123893392.jpg")
+      setBio("I think you didint entered anything in the box !! ANYWAY");
+      setName("HI !! Im  pyara Bear of gourav");
+      setFollowers("bear dont have followers");
+      setFollowing("bears follows what he love ");
+      setTotalrepo("Bears dont know about repo.OK .they know only eating");
+    }
 
   };
 
@@ -113,7 +121,7 @@ const Profile = () => {
             pl={5}
             onClick={submitHandler}  >
             lets Find Out
-            <IconButton ml={5} w={5} h={7} icon={<FiSearch />} />
+            <IconButton ml={1} w={5} h={7} icon={<FiSearch />} />
           </chakra.button>
           <Spacer />
 
@@ -158,7 +166,7 @@ const Profile = () => {
 
             <>
               <Center mt={8}>
-                <Box bg="rd" color="white">
+                <Box p={6} ml={8} color="white">
                   <Image src={userImg} />
                 </Box>
                 <Box p={6} ml={8} shadow="lg" rounded="lg" bg="white"
