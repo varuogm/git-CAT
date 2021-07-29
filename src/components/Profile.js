@@ -5,8 +5,8 @@ import { IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
 import CAT from '../../src/Kitty.gif';
 import { FaSun, FaMoon, FaQuestionCircle } from 'react-icons/fa';
 import { FiZap, FiSearch } from "react-icons/fi";
-
-
+import { Center, Square, Circle } from "@chakra-ui/react"
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react"
 import { VStack, useColorMode } from '@chakra-ui/react';
 import { Spacer } from "@chakra-ui/react"
 
@@ -61,6 +61,7 @@ const Profile = () => {
           <IconButton
             icon={colorMode === 'light' ? <FiZap /> : <FaMoon />}
             isRound='true'
+
             size='lg'
             alignSelf='flex-end'
             onClick={toggleColorMode}
@@ -72,6 +73,7 @@ const Profile = () => {
       </>
       <Heading mt='0' mb='5' size='2xl'
         fontWeight='extrabold' bgClip='text'
+
         bgGradient='linear(to-r, pink.500, pink.300, blue.500)'
       >
         Info about Github user
@@ -84,7 +86,7 @@ const Profile = () => {
       </Text>
 
       <br />
-      <hr />
+      <Skeleton startColor="pink.500" endColor="orange.500" height="7px" />
 
       <div style={{ padding: 20 }}>
         <div className="ui search">
@@ -112,30 +114,31 @@ const Profile = () => {
             lets Find Out
             <IconButton ml={5} w={5} h={7} icon={<FiSearch />} />
           </chakra.button>
+          <Spacer />
 
           {//horizontal card remaining
           }
           {Show == true &&
-            <Box p="5" maxW="320px" >
-              <Image src={userImg} />
-              <Flex mt={50}>
-                <Badge colorScheme="green">PRO</Badge>
-                <Text
-                  ml={5}
-                  textTransform=""
-                  fontSize="sm"
-                  fontWeight="bold"
-                  color="pink.800">
-                  {loc}
-                </Text>
-                <Text
-                  ml={13}
-                  fontSize="m"
-                  fontWeight="bold"
-                  color="yellow.500" >
-                  todo stars - 99
-                </Text>
-              </Flex>
+            /*<Box align="center" w="100%" p="5"  >
+              <Image align='left' src={userImg} w="20%" h="20%" />
+
+              <Badge align="center" colorScheme="green">PRO</Badge>
+              <Text
+                ml={5}
+                textTransform=""
+                fontSize="sm"
+                fontWeight="bold"
+                color="pink.800">
+                {loc}
+              </Text>
+              <Text
+                ml={13}
+                fontSize="m"
+                fontWeight="bold"
+                color="yellow.500" >
+                todo stars - 99
+              </Text>
+
 
               <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
                 {Bio}
@@ -150,8 +153,33 @@ const Profile = () => {
                   <b>todo data</b> todo another data
                 </Text>
               </Flex>
-            </Box>
+            </Box>*/
+
+            <>
+              <Center mt={8}>
+                <Box bg="rd" color="white">
+                  <Image src={userImg} />
+                </Box>
+                <Box p={6} ml={8} shadow="lg" rounded="lg" bg="white"
+                  px="3" py="2" bgGradient="linear(to-r, green.300,purple.400, pink.500)" >
+                  <Text mt={0} fontSize="l" fontWeight="semibold" lineHeight="short">
+                    {Bio}
+                  </Text>
+                  <Text mt={15}>Name - {Name} </Text>
+                  <Text mt={5}>Followers - {followers} </Text>
+                  <Text mt={5}>Following  - {following} </Text>
+                  <Text mt={5}>Total Repos - {Totalrepo}</Text>
+                  <Flex mt={5} align="center">
+                    <Box color="orange.400" />
+                    <Text ml={1} fontSize="sm">
+                      <b>todo data</b> todo another data
+                    </Text>
+                  </Flex>
+                </Box>
+              </Center>
+            </>
           }
+
           <Box mt={5}>
 
             <Box height="10" align="center">
