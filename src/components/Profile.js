@@ -3,8 +3,12 @@ import { Heading, Box, Flex, Badge, Text } from "@chakra-ui/react";
 import { chakra, Button, ButtonGroup, Image } from "@chakra-ui/react"
 import { IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
 import CAT from '../../src/Kitty.gif';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { FaSun, FaMoon, FaQuestionCircle } from 'react-icons/fa';
+import { FiZap, FiSearch } from "react-icons/fi";
+
+
 import { VStack, useColorMode } from '@chakra-ui/react';
+import { Spacer } from "@chakra-ui/react"
 
 const Profile = () => {
 
@@ -22,7 +26,9 @@ const Profile = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const onChangeHandler = e => {
     setUsername(e.target.value);
+
   };
+
 
   const submitHandler = async e => {
     setShow(true);
@@ -49,18 +55,25 @@ const Profile = () => {
 
   return (
     <>
-      <VStack p={4}>
-        <IconButton
-          icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
-          isRound='true'
-          size='lg'
-          alignSelf='flex-end'
-          onClick={toggleColorMode}
-        />
-      </VStack>
-      <Heading mt='10' mb='10' size='2xl'
+      <>
+
+        <VStack direction="0" p={4}  >
+          <IconButton
+            icon={colorMode === 'light' ? <FiZap /> : <FaMoon />}
+            isRound='true'
+            size='lg'
+            alignSelf='flex-end'
+            onClick={toggleColorMode}
+          />
+
+        </VStack>
+
+
+      </>
+      <Heading mt='0' mb='5' size='2xl'
         fontWeight='extrabold' bgClip='text'
-        bgGradient='linear(to-r, pink.500, pink.300, blue.500)'>
+        bgGradient='linear(to-r, pink.500, pink.300, blue.500)'
+      >
         Info about Github user
       </Heading>
 
@@ -77,11 +90,12 @@ const Profile = () => {
         <div className="ui search">
 
           <InputGroup>
-            <InputLeftAddon shadow="lg" px="3" py="2" children="your github @" />
+            <InputLeftAddon shadow="lg" px="5" py="5" children="your github @" />
             <Input className="prompt"
               placeholder="search username here..."
               type="text"
               value={username}
+
               onChange={onChangeHandler} variant="filled"
               placeholder="Enter your username here" />
           </InputGroup>
@@ -90,12 +104,13 @@ const Profile = () => {
 
           <chakra.button
             shadow="lg" rounded="lg" bg="white"
-            px="3" py="2" bg="blue.200" rounded="md"
-            _hover={{ bg: "pink.300" }}
+            px="3" py="2" bg="blue.400" rounded="md"
+            _hover={{ bg: "pink.400" }}
             type="submit"
-
-            onClick={submitHandler}>
+            pl={5}
+            onClick={submitHandler}  >
             lets Find Out
+            <IconButton ml={5} w={5} h={7} icon={<FiSearch />} />
           </chakra.button>
 
           {//horizontal card remaining
