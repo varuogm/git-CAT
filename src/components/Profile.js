@@ -9,6 +9,7 @@ import { Center, Square, Circle } from "@chakra-ui/react"
 import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react"
 import { VStack, useColorMode } from '@chakra-ui/react';
 import { Spacer } from "@chakra-ui/react"
+import { useToast } from "@chakra-ui/react"
 
 const Profile = () => {
 
@@ -28,7 +29,7 @@ const Profile = () => {
     setUsername(e.target.value);
 
   };
-
+  const toast = useToast()
 
   const submitHandler = async e => {
     setShow(true);
@@ -176,9 +177,17 @@ const Profile = () => {
           }
 
           <Box mt={5}>
-
             <Box height="10" align="center">
-              <span>  <img src={CAT} />
+              <span>  <img onClick={() =>
+                toast({
+                  title: `heyy ${Name} `,
+                  description: "Have a great day.",
+
+                  duration: 1000,
+                  isClosable: true,
+                })
+              }
+                Show Toast src={CAT} />
               </span>
               <Text margin="5">
                 Made with  ❤️ and 🐱
