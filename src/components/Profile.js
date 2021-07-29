@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import { Heading, Box, Flex, Badge, Text } from "@chakra-ui/react";
-import { chakra, Button, ButtonGroup, Image } from "@chakra-ui/react"
+import { Heading, Box, Text, chakra, Image } from "@chakra-ui/react";
 import { IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
 import CAT from '../../src/Kitty.gif';
-import { FaSun, FaMoon, FaQuestionCircle } from 'react-icons/fa';
+import { FaMoon } from 'react-icons/fa';
 import { FiZap, FiSearch } from "react-icons/fi";
-import { Center, Square, Circle } from "@chakra-ui/react"
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react"
-import { VStack, useColorMode } from '@chakra-ui/react';
-import { Spacer } from "@chakra-ui/react"
-import { useToast } from "@chakra-ui/react"
+import { Button, Flex, Center, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
+import { useMediaQuery } from "@chakra-ui/react";
 
 const Profile = () => {
 
@@ -23,11 +19,12 @@ const Profile = () => {
   const [Name, setName] = useState("");
 
   const [Show, setShow] = useState(false);
-
   const { colorMode, toggleColorMode } = useColorMode();
+
+  const [check] = useMediaQuery("(min-width: 1025px)")
+
   const onChangeHandler = e => {
     setUsername(e.target.value);
-
   };
   const toast = useToast()
 
@@ -65,26 +62,20 @@ const Profile = () => {
   return (
     <>
       <>
-
         <VStack direction="0" p={4}  >
           <IconButton
             icon={colorMode === 'light' ? <FiZap /> : <FaMoon />}
             isRound='true'
-
             size='lg'
             alignSelf='flex-end'
             onClick={toggleColorMode}
           />
-
         </VStack>
-
-
       </>
+
       <Heading mt='0' mb='5' size='2xl'
         fontWeight='extrabold' bgClip='text'
-
-        bgGradient='linear(to-r, pink.500, pink.300, blue.500)'
-      >
+        bgGradient='linear(to-r, pink.500, pink.300, blue.500)' >
         Info about Github user
       </Heading>
 
@@ -99,7 +90,6 @@ const Profile = () => {
 
       <div style={{ padding: 20 }}>
         <div className="ui search">
-
           <InputGroup>
             <InputLeftAddon shadow="lg" px="5" py="5" children="your github @" />
             <Input className="prompt"
@@ -166,14 +156,18 @@ const Profile = () => {
 
             <>
               <Center mt={8}>
+
                 <Box p={6} ml={8} color="white">
                   <Image src={userImg} />
                 </Box>
+
                 <Box p={6} ml={8} shadow="lg" rounded="lg" bg="white"
                   px="3" py="2" bgGradient="linear(to-r, green.300,purple.400, pink.500)" >
+
                   <Text mt={0} fontSize="l" fontWeight="semibold" lineHeight="short">
                     {Bio}
                   </Text>
+
                   <Text mt={15}>Name - {Name} </Text>
                   <Text mt={5}>Followers - {followers} </Text>
                   <Text mt={5}>Following  - {following} </Text>
@@ -183,14 +177,32 @@ const Profile = () => {
               </Center>
             </>
           }
+          <Spacer />
+          <Spacer />
+          <Flex flexDirection={check ? "row" : "column"} >
+            <img src="https://freesvg.org/img/1545680592.png" height="50%" width={check ? "40%" : "100%"} lazyload="off" />
 
+            <Box textAlign="center">
+              <Box mt={check ? "20%" : "0%"} ml={check ? "15%" : "0%"}>
+                <Flex direction="column">
+                  <Text
+                    fontSize="xl"
+                    mr={check ? "10%" : "0%"}
+                  > What a cute cat likes.Maybe some cat-food but im special i want your opinion on how much rating you would give this  </Text>
+                  <Text mt="5%">
+                    Also share and stars are appreciated !! MEOWW
+                  </Text>
+                </Flex>
+              </Box>
+            </Box>
+          </Flex>
+          <Spacer />
           <Box mt={5}>
             <Box height="10" align="center">
               <span>  <img onClick={() =>
                 toast({
                   title: `heyy ${Name} `,
                   description: "Have a great day.",
-
                   duration: 1000,
                   isClosable: true,
                 })
@@ -198,10 +210,14 @@ const Profile = () => {
                 Show Toast src={CAT} />
               </span>
               <Text margin="5">
-                Made with  ❤️ and 🐱
+                Youve reached the end BTW click me!!
               </Text>
             </Box>
           </Box>
+
+
+
+
 
         </div>
       </div>
