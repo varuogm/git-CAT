@@ -44,7 +44,7 @@ const Profile = () => {
       setuserImg(profileJson.avatar_url);
       setFollowers(profileJson.followers);
       setFollowing(profileJson.following);
-      var TotalRepo = Object.keys(profileJson.repos_url).length;
+      var TotalRepo = Object.keys(profileJson.repos_url || {}).length;
       //console.log(personSize);
       setTotalrepo(TotalRepo);
       setName(profileJson.name);
@@ -169,12 +169,7 @@ const Profile = () => {
                   <Text mt={5}>Followers - {followers} </Text>
                   <Text mt={5}>Following  - {following} </Text>
                   <Text mt={5}>Total Repos - {Totalrepo}</Text>
-                  <Flex mt={5} align="center">
-                    <Box color="orange.400" />
-                    <Text ml={1} fontSize="sm">
-                      <b>todo data</b> todo another data
-                    </Text>
-                  </Flex>
+
                 </Box>
               </Center>
             </>
