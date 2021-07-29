@@ -3,7 +3,8 @@ import { Heading, Box, Flex, Badge, Text } from "@chakra-ui/react";
 import { chakra, Button, ButtonGroup, Image } from "@chakra-ui/react"
 import { IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
 import CAT from '../../src/Kitty.gif';
-
+import { FaSun, FaMoon } from 'react-icons/fa';
+import { VStack, useColorMode } from '@chakra-ui/react';
 
 const Profile = () => {
 
@@ -18,7 +19,7 @@ const Profile = () => {
 
   const [Show, setShow] = useState(false);
 
-
+  const { colorMode, toggleColorMode } = useColorMode();
   const onChangeHandler = e => {
     setUsername(e.target.value);
   };
@@ -43,10 +44,20 @@ const Profile = () => {
       setName(profileJson.name);
 
     }
+
   };
 
   return (
     <>
+      <VStack p={4}>
+        <IconButton
+          icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
+          isRound='true'
+          size='lg'
+          alignSelf='flex-end'
+          onClick={toggleColorMode}
+        />
+      </VStack>
       <Heading mt='10' mb='10' size='2xl'
         fontWeight='extrabold' bgClip='text'
         bgGradient='linear(to-r, pink.500, pink.300, blue.500)'>
