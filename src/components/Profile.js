@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Heading, Box, Text, chakra, Image } from "@chakra-ui/react";
 import { IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
 import CAT from '../../src/Kitty.gif';
+import CATS from '../../src/Cats.png';
+
+
 import { FaMoon } from 'react-icons/fa';
 import { FiZap, FiSearch } from "react-icons/fi";
 import { Button, Flex, Center, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
@@ -180,7 +183,7 @@ const Profile = () => {
           <Spacer />
           <Spacer />
           <Flex flexDirection={check ? "row" : "column"} >
-            <img src="https://freesvg.org/img/1545680592.png" height="50%" width={check ? "40%" : "100%"} lazyload="off" />
+            <img src={CATS} height="50%" width={check ? "40%" : "100%"} lazyload="off" />
 
             <Box textAlign="center">
               <Box mt={check ? "20%" : "0%"} ml={check ? "15%" : "0%"}>
@@ -210,7 +213,7 @@ const Profile = () => {
                 Show Toast src={CAT} />
               </span>
               <Text margin="5">
-                Youve reached the end BTW click me!!
+                Youve reached the end 💖 BTW click me 🐾!!
               </Text>
             </Box>
           </Box>
