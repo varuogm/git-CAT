@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Heading, Box, Text, chakra, Image } from "@chakra-ui/react";
 import { ButtonGroup, IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
+
+import { FaMoon, FaLinkedin, FaGithub, FaTwitter, FaLink } from 'react-icons/fa';
+import { FiZap, FiSearch } from "react-icons/fi";
+import { Flex, Center, Stack, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
+import { useMediaQuery } from "@chakra-ui/react";
 import CAT from '../../src/Kitty.gif';
 import CATS from '../../src/Cats.png';
-
-import { FaMoon, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
-import { FiZap, FiSearch } from "react-icons/fi";
-import { Button, Flex, Center, Stack, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
-import { useMediaQuery } from "@chakra-ui/react";
-
 
 const Profile = () => {
   let GouravImage = "https://media-exp1.licdn.com/dms/image/C5603AQH_DYNV6F0IWw/profile-displayphoto-shrink_200_200/0/1622171286572?e=1629936000&v=beta&t=NfEqSgeobEWHkZUHm_VSvp5msuNO9rPkSpn_EJE4NZY";
 
   const [username, setUsername] = useState("");
   const [loc, setLoc] = useState("?");
+  const [Bloglink, setBloglink] = useState("?");
+
   const [Bio, setBio] = useState("");
   const [userImg, setuserImg] = useState("https://thumbs.dreamstime.com/b/happy-bear-family-characters-teddy-bear-family-happy-bear-family-characters-teddy-bear-family-vector-123893392.jpg");
   const [followers, setFollowers] = useState("");
@@ -51,9 +52,11 @@ const Profile = () => {
       //console.log(personSize);
       setTotalrepo(TotalRepo);
       setName(profileJson.name);
+      setBloglink(profileJson.blog);
+
     }
 
-    if (username == "") {
+    if (username === "") {
       setuserImg("https://thumbs.dreamstime.com/b/happy-bear-family-characters-teddy-bear-family-happy-bear-family-characters-teddy-bear-family-vector-123893392.jpg")
       setBio("I think you didint entered anything in the box ⁉️ ANYWAY");
       setName("HI !! Im  pyara Bear of gourav");
@@ -101,7 +104,7 @@ const Profile = () => {
             <InputLeftAddon shadow="lg" px="5" py="5" children="your github @" />
             <Input className="prompt"
               boxShadow="inner"
-              placeholder="search username here..."
+
               type="text"
               value={username}
 
@@ -112,8 +115,8 @@ const Profile = () => {
           <br />
 
           <chakra.button
-            shadow="lg" rounded="lg" bg="white"
-            px="3" py="2" bg="blue.400" rounded="md"
+            shadow="lg" rounded="lg"
+            px="3" py="2" bg="blue.400"
             _hover={{ bg: "pink.400" }}
             type="submit"
             pl={5}
@@ -177,11 +180,13 @@ const Profile = () => {
                     {Bio}
                   </Text>
 
-                  <Text mt={15}>Name - {Name} </Text>
+                  {Name !== "" && Name !== null && <Text mt={5}> {"Hi, i am " + Name + " !"}</Text>}
                   <Text mt={5}>Followers - {followers} </Text>
                   <Text mt={5}>Following  - {following} </Text>
                   <Text mt={5}>Total Repos - {Totalrepo}</Text>
-
+                  {loc !== "" && <Text mt={5}> {"Location -" + loc}</Text>}
+                  {Bloglink !== "" && <Text mt={5}> {"Look on my blogs here- " + Bloglink}
+                    <IconButton ml="15px" onClick={() => window.open(Bloglink, "_blank")} icon={<FaLink fontSize="10px" />} /></Text>}
                 </Box>
               </Center>
             </>
@@ -189,7 +194,7 @@ const Profile = () => {
           <Spacer />
           <Spacer />
           <Flex flexDirection={check ? "row" : "column"} >
-            <img src={CATS} height="50%" width={check ? "40%" : "100%"} lazyload="off" />
+            <img src={CATS} height="50%" width={check ? "40%" : "100%"} lazyload="off" alt="Cats-pic" />
 
             <Box textAlign="center">
               <Box mt={check ? "20%" : "0%"} ml={check ? "15%" : "0%"}>
@@ -216,10 +221,10 @@ const Profile = () => {
                   isClosable: true,
                 })
               }
-                Show Toast src={CAT} />
+                Show Toast src={CAT} alt="Cat gif" />
               </span>
               <Text margin="5" >
-                Youve reached the end 💖 BTW click me 🐾!!
+                You've reached the end 💖 BTW click me 🐾!!
               </Text>
             </Box>
           </Box>
@@ -229,8 +234,6 @@ const Profile = () => {
           <Box as="footer" role="contentinfo" mt="50px" mx="auto" maxW="7xl" py="12" px={{ base: '4', md: '8' }}>
 
             <Skeleton mt="70px" mb="20px" startColor="pink.500" endColor="orange.500" height="7px" />
-
-
             <Stack>
               <Center>
                 <Image alignSelf='flex-center'
@@ -245,10 +248,10 @@ const Profile = () => {
               <Stack direction="row" mt="20px" align="center" justify="center">
 
                 <ButtonGroup boxShadow="inner" color="gray.600" >
-                  <IconButton boxShadow="inner" href="https://in.linkedin.com/in/gourav-majee-724b37188" label="likedin" icon={<FaLinkedin fontSize="30px" />} />
-                  <IconButton boxShadow="inner" href="https://github.com/varuogm" label="github" icon={<FaGithub fontSize="30px" />} />
-                  <IconButton boxShadow="inner" href="https://twitter.com/Varougm" label="tooter" icon={<FaTwitter fontSize="30px" />} />
-
+                  <IconButton boxShadow="inner" onClick={() => window.open("https://twitter.com/Varougm", "_blank")} icon={<FaTwitter fontSize="30px" />} />
+                  <IconButton boxShadow="inner" onClick={() => window.open("https://github.com/varuogm", "_blank")} icon={<FaGithub fontSize="30px" />} />
+                  <IconButton boxShadow="inner" onClick={() => window.open("https://in.linkedin.com/in/gourav-majee-724b37188", "_blank")} icon={<FaLinkedin fontSize="30px" />} />
+                  <IconButton boxShadow="inner" onClick={() => window.open("https://gouravmajee.me/", "_blank")} icon={<FaLink fontSize="30px" />} />
                 </ButtonGroup>
 
               </Stack>
