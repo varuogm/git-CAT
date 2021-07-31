@@ -164,13 +164,13 @@ const Profile = () => {
             </Box>*/
 
             <>
-              <Center mt={8}>
+              <Center flexDirection={check ? "row" : "column"} mt={8} boxShadow="inner">
 
-                <Box p={6} ml={8} color="white">
+                <Box p={6} ml={8} color="white" boxShadow="inner">
                   <Image src={userImg} />
                 </Box>
 
-                <Box p={6} ml={8} shadow="lg" rounded="lg" bg="white"
+                <Box p={6} ml={8} shadow="lg" rounded="lg" bg="white" boxShadow="inner"
                   px="3" py="2" bgGradient="linear(to-r,gray.400, pink.300,purple.400)" >
 
                   <Text mt={0} fontSize="l" fontWeight="semibold" lineHeight="short">
@@ -237,6 +237,7 @@ const Profile = () => {
                   borderRadius="100px"
                   align="center" justify="center"
                   boxSize="90px"
+                  boxShadow="inner"
                   src={GouravImage}
                   alt="gourav image"
                 />
