@@ -74,12 +74,14 @@ const Profile = () => {
             size='lg'
             alignSelf='flex-end'
             onClick={toggleColorMode}
+            boxShadow="inner" p="6"
           />
         </VStack>
       </>
 
       <Heading mt='0' mb='5' size='2xl'
         fontWeight='extrabold' bgClip='text'
+
         bgGradient='linear(to-r, pink.500, pink.300, blue.500)' >
         Welcome to Git-CAT
       </Heading>
@@ -93,11 +95,12 @@ const Profile = () => {
       <br />
       <Skeleton startColor="pink.500" endColor="orange.500" height="7px" />
 
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 40 }}>
         <div className="ui search">
           <InputGroup>
             <InputLeftAddon shadow="lg" px="5" py="5" children="your github @" />
             <Input className="prompt"
+              boxShadow="inner"
               placeholder="search username here..."
               type="text"
               value={username}
@@ -114,6 +117,7 @@ const Profile = () => {
             _hover={{ bg: "pink.400" }}
             type="submit"
             pl={5}
+            boxShadow="inner"
             onClick={submitHandler}  >
             lets Find Out
             <IconButton ml={1} w={5} h={7} icon={<FiSearch />} />
@@ -125,7 +129,7 @@ const Profile = () => {
           {Show === true &&
             /*<Box align="center" w="100%" p="5"  >
               <Image align='left' src={userImg} w="20%" h="20%" />
-
+ 
               <Badge align="center" colorScheme="green">PRO</Badge>
               <Text
                 ml={5}
@@ -142,8 +146,8 @@ const Profile = () => {
                 color="yellow.500" >
                 todo stars - 99
               </Text>
-
-
+ 
+ 
               <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
                 {Bio}
               </Text>
@@ -239,10 +243,10 @@ const Profile = () => {
               </Center>
               <Stack direction="row" mt="20px" align="center" justify="center">
 
-                <ButtonGroup color="gray.600" >
-                  <IconButton href="https://in.linkedin.com/in/gourav-majee-724b37188" label="likedin" icon={<FaLinkedin fontSize="30px" />} />
-                  <IconButton href="https://github.com/varuogm" label="github" icon={<FaGithub fontSize="30px" />} />
-                  <IconButton href="https://twitter.com/Varougm" label="tooter" icon={<FaTwitter fontSize="30px" />} />
+                <ButtonGroup boxShadow="inner" color="gray.600" >
+                  <IconButton boxShadow="inner" href="https://in.linkedin.com/in/gourav-majee-724b37188" label="likedin" icon={<FaLinkedin fontSize="30px" />} />
+                  <IconButton boxShadow="inner" href="https://github.com/varuogm" label="github" icon={<FaGithub fontSize="30px" />} />
+                  <IconButton boxShadow="inner" href="https://twitter.com/Varougm" label="tooter" icon={<FaTwitter fontSize="30px" />} />
 
                 </ButtonGroup>
 
