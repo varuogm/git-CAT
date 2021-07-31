@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { Heading, Box, Text, chakra, Image } from "@chakra-ui/react";
-import { IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
+import { ButtonGroup, IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
 import CAT from '../../src/Kitty.gif';
 import CATS from '../../src/Cats.png';
 
-
-import { FaMoon } from 'react-icons/fa';
+import { FaMoon, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 import { FiZap, FiSearch } from "react-icons/fi";
-import { Button, Flex, Center, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
+import { Button, Flex, Center, Stack, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
 import { useMediaQuery } from "@chakra-ui/react";
 
+
 const Profile = () => {
+  let GouravImage = "https://media-exp1.licdn.com/dms/image/C5603AQH_DYNV6F0IWw/profile-displayphoto-shrink_200_200/0/1622171286572?e=1629936000&v=beta&t=NfEqSgeobEWHkZUHm_VSvp5msuNO9rPkSpn_EJE4NZY";
 
   const [username, setUsername] = useState("");
   const [loc, setLoc] = useState("?");
@@ -25,11 +26,12 @@ const Profile = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const [check] = useMediaQuery("(min-width: 1025px)")
+  const toast = useToast()
 
   const onChangeHandler = e => {
     setUsername(e.target.value);
   };
-  const toast = useToast()
+
 
   const submitHandler = async e => {
     setShow(true);
@@ -49,11 +51,11 @@ const Profile = () => {
       //console.log(personSize);
       setTotalrepo(TotalRepo);
       setName(profileJson.name);
-
     }
+
     if (username == "") {
       setuserImg("https://thumbs.dreamstime.com/b/happy-bear-family-characters-teddy-bear-family-happy-bear-family-characters-teddy-bear-family-vector-123893392.jpg")
-      setBio("I think you didint entered anything in the box !! ANYWAY");
+      setBio("I think you didint entered anything in the box ⁉️ ANYWAY");
       setName("HI !! Im  pyara Bear of gourav");
       setFollowers("bear dont have followers");
       setFollowing("bears follows what he love ");
@@ -79,7 +81,7 @@ const Profile = () => {
       <Heading mt='0' mb='5' size='2xl'
         fontWeight='extrabold' bgClip='text'
         bgGradient='linear(to-r, pink.500, pink.300, blue.500)' >
-        Info about Github user
+        Welcome to Git-CAT
       </Heading>
 
       <Text
@@ -120,7 +122,7 @@ const Profile = () => {
 
           {//horizontal card remaining
           }
-          {Show == true &&
+          {Show === true &&
             /*<Box align="center" w="100%" p="5"  >
               <Image align='left' src={userImg} w="20%" h="20%" />
 
@@ -165,7 +167,7 @@ const Profile = () => {
                 </Box>
 
                 <Box p={6} ml={8} shadow="lg" rounded="lg" bg="white"
-                  px="3" py="2" bgGradient="linear(to-r, green.300,purple.400, pink.500)" >
+                  px="3" py="2" bgGradient="linear(to-r,gray.400, pink.300,purple.400)" >
 
                   <Text mt={0} fontSize="l" fontWeight="semibold" lineHeight="short">
                     {Bio}
@@ -212,14 +214,45 @@ const Profile = () => {
               }
                 Show Toast src={CAT} />
               </span>
-              <Text margin="5">
+              <Text margin="5" >
                 Youve reached the end 💖 BTW click me 🐾!!
               </Text>
             </Box>
           </Box>
 
+          <Spacer />
+
+          <Box as="footer" role="contentinfo" mt="50px" mx="auto" maxW="7xl" py="12" px={{ base: '4', md: '8' }}>
+
+            <Skeleton mt="70px" mb="20px" startColor="pink.500" endColor="orange.500" height="7px" />
 
 
+            <Stack>
+              <Center>
+                <Image alignSelf='flex-center'
+                  borderRadius="100px"
+                  align="center" justify="center"
+                  boxSize="90px"
+                  src={GouravImage}
+                  alt="gourav image"
+                />
+              </Center>
+              <Stack direction="row" mt="20px" align="center" justify="center">
+
+                <ButtonGroup color="gray.600" >
+                  <IconButton href="https://in.linkedin.com/in/gourav-majee-724b37188" label="likedin" icon={<FaLinkedin fontSize="30px" />} />
+                  <IconButton href="https://github.com/varuogm" label="github" icon={<FaGithub fontSize="30px" />} />
+                  <IconButton href="https://twitter.com/Varougm" label="tooter" icon={<FaTwitter fontSize="30px" />} />
+
+                </ButtonGroup>
+
+              </Stack>
+              <Text fontSize="m"
+                fontWeight="bold" color="gray.600">
+                Made with love by gourav.
+              </Text>
+            </Stack>
+          </Box>
 
 
         </div>
