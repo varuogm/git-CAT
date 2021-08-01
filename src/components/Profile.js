@@ -5,7 +5,7 @@ import { ButtonGroup, IconButton, Input, InputGroup, InputLeftAddon } from "@cha
 import { FaMoon, FaLinkedin, FaGithub, FaTwitter, FaLink } from 'react-icons/fa';
 import { FiZap, FiSearch } from "react-icons/fi";
 import { Flex, Center, Stack, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
-import { useMediaQuery } from "@chakra-ui/react";
+import { useMediaQuery, Tooltip } from "@chakra-ui/react";
 import CAT from '../../src/Kitty.gif';
 import CATS from '../../src/Cats.png';
 
@@ -23,11 +23,12 @@ const Profile = () => {
   const [Totalrepo, setTotalrepo] = useState("");
   const [Name, setName] = useState("");
 
-  const [Show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
 
   const [check] = useMediaQuery("(min-width: 1025px)")
   const toast = useToast()
+
 
   const onChangeHandler = e => {
     setUsername(e.target.value);
@@ -70,6 +71,7 @@ const Profile = () => {
   return (
     <>
       <>
+
         <VStack direction="0" p={4}  >
           <IconButton
             icon={colorMode === 'light' ? <FiZap /> : <FaMoon />}
@@ -81,7 +83,6 @@ const Profile = () => {
           />
         </VStack>
       </>
-
       <Heading mt='0' mb='5' size='2xl'
         fontWeight='extrabold' bgClip='text'
 
@@ -129,7 +130,7 @@ const Profile = () => {
 
           {//horizontal card remaining
           }
-          {Show === true &&
+          {show === true &&
             /*<Box align="center" w="100%" p="5"  >
               <Image align='left' src={userImg} w="20%" h="20%" />
  
@@ -204,7 +205,13 @@ const Profile = () => {
                     mr={check ? "10%" : "0%"}
                   > What a cute cat likes.Maybe some cat-food but im special i want your opinion on how much rating you would give this  </Text>
                   <Text mt="5%">
-                    Also share and stars are appreciated !! MEOWW
+                    Also share and stars⭐ are appreciated !! MEOWW
+                    <Tooltip label="Star! on github" >
+                      <a href='https://github.com/varuogm/git-CAT'
+                        target='_blank'><IconButton ml={2} mr={1}
+                          boxSize="30px"
+                          icon={<FaGithub />} isRound="true"></IconButton></a>
+                    </Tooltip>
                   </Text>
                 </Flex>
               </Box>
@@ -221,7 +228,7 @@ const Profile = () => {
                   isClosable: true,
                 })
               }
-                Show Toast src={CAT} alt="Cat gif" />
+                show Toast src={CAT} alt="Cat gif" />
               </span>
               <Text margin="5" >
                 You've reached the end 💖 BTW click me 🐾!!
@@ -265,6 +272,7 @@ const Profile = () => {
 
         </div>
       </div>
+      {console.log("muje laga hi tha tum yaaha kuch masti karne aaoyge")}
 
     </>
   );
