@@ -34,4 +34,4 @@ I know we all love cats but why not to ask him to review our github .so here it 
 * UI rewamp
 
 
-<h2 align="center">  <strong> Made with React  and ChakraUI </strong></h2>
+<h2 align="center">  <strong> Made with ReactJS  and Chakra-UI </strong></h2>
