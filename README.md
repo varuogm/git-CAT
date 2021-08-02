@@ -23,7 +23,7 @@ I know we all love cats but why not to ask him to review our github .so here it 
 ![](https://github.com/varuogm/git-CAT/blob/master/second.png)
 
 
-<img alt="GitHub watchers" src="https://img.shields.io/github/watchers/varuogm/My-snap-creations?label=total%20repo%20watches&style=social">
+<img alt="GitHub watchers" src="https://img.shields.io/github/watchers/varuogm/git-CAT?label=total%20repo%20watches&style=social">
 
 
 ---
