@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Heading, Box, Text, chakra, Image } from "@chakra-ui/react";
-import { ButtonGroup, IconButton, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react"
+import { ButtonGroup, IconButton, Input, InputGroup, InputRightAddon, InputLeftAddon } from "@chakra-ui/react"
 
 import { FaMoon, FaLinkedin, FaGithub, FaTwitter, FaLink } from 'react-icons/fa';
 import { FiZap, FiSearch } from "react-icons/fi";
 import { Flex, Center, Stack, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
 import { useMediaQuery, Tooltip } from "@chakra-ui/react";
+import { Alert, AlertIcon, } from "@chakra-ui/react";
 import CAT from '../../src/Kitty.gif';
 import CATS from '../../src/Cats.png';
 
@@ -29,11 +30,35 @@ const Profile = () => {
   const [check] = useMediaQuery("(min-width: 1025px)")
   const toast = useToast()
 
+  const [friendUsername, setFriendUsername] = useState("");
+  const [frienduserImg, setFrienduserImg] = useState("");
+
+
+  const [TotalFriendRepo, setfriendTotalrepo] = useState("");
+
+
 
   const onChangeHandler = e => {
     setUsername(e.target.value);
   };
 
+  const onFriendChangeHandler = e => {
+    setFriendUsername(e.target.value);
+  };
+
+  const submitfriendHandler = async e => {
+    const Friendprofile = await fetch(`https://api.github.com/users/${friendUsername}`);
+    const friendProfileJson = await Friendprofile.json();
+
+    if (friendProfileJson)
+      setFriendUsername(friendProfileJson.name);
+    setFrienduserImg(friendProfileJson.avatar_url);
+
+    var TotalFriendRepo = Object.keys(friendProfileJson.repos_url || {}).length;
+
+    setfriendTotalrepo(TotalFriendRepo);
+
+  }
 
   const submitHandler = async e => {
     setShow(true);
@@ -41,7 +66,12 @@ const Profile = () => {
     const profile = await fetch(`https://api.github.com/users/${username}`);
     const profileJson = await profile.json();
     //console.log(profile);
-
+    /*
+        const trendings = await fetch(`https://trendings.herokuapp.com/repo`);
+        const TrendingJson = await trendings.json();
+    
+        console.log(TrendingJson.items.repo_link)
+    */
     if (profileJson) {
       setLoc(profileJson.location);
       //setComapany(profileJson.company);
@@ -168,7 +198,7 @@ const Profile = () => {
             </Box>*/
 
             <>
-              <Center flexDirection={check ? "row" : "column"} mt={8} boxShadow="inner">
+              <Center flexDirection="row" mt={8} boxShadow="inner">
 
                 <Box p={6} ml={8} color="white" boxShadow="inner">
                   <Image src={userImg} />
@@ -217,7 +247,83 @@ const Profile = () => {
               </Box>
             </Box>
           </Flex>
-          <Spacer />
+          <Spacer mt="50px" />
+          <Heading mt='0' mb='5' size='2xl'
+            fontWeight='extrabold' bgClip='text'
+
+            bgGradient='linear(to-r, yellow.500, green.300, cyan.500)' >
+            Compare freinds stats
+          </Heading>
+          <Spacer mt="30px" />
+          <Text
+            ml={10} fontSize="m"
+            fontWeight="bold" color="cyan.500">
+            mock compare with your friend stats
+          </Text>
+          <Spacer mt="50px" />
+          <flexDirection>
+            <InputGroup mt="25px" size="lg">
+              <InputLeftAddon pr={20} children={Name} />
+              <Heading fontWeight='bold' bgClip='text'
+                size="lg" ml="5%" mr="5%"
+                bgGradient='linear(to-r, pink.500, pink.300, blue.500)'
+              >  VS</Heading>
+              <Input className="prompt"
+                boxShadow="inner"
+
+                type="text"
+                value={friendUsername}
+
+                onChange={onFriendChangeHandler} variant="filled"
+                placeholder="Enter your fridn name here" />
+            </InputGroup>
+          </flexDirection>
+          <chakra.button
+            shadow="lg" rounded="lg"
+            px="3" py="2" bg="red.400"
+            _hover={{ bg: "green.400" }}
+            type="submit"
+            mt={10}
+            pl={5}
+            boxShadow="inner"
+            onClick={submitfriendHandler}  >
+            Compare
+            <IconButton ml={1} w={5} h={7} icon={<FiSearch />} />
+          </chakra.button>
+          <Spacer mt="50px" />
+          <Flex>
+            <Box p="10" background="repeating-radial-gradient(
+                circle,gray,
+                purple 10px,
+                 #4b026f 10px, 
+                #4b026f 20px)">
+              <Image boxSize="250px" objectFit="cover" src={userImg} />
+            </Box>
+            <Spacer />
+            <Box p="10" bg="yellow.400" background="repeating-radial-gradient(
+                circle,gray,
+                purple 10px,
+                 #4b026f 10px, 
+                #4b026f 20px)">
+              <Image boxSize="250px" objectFit="cover" src={frienduserImg} />
+            </Box>
+          </Flex>
+          <Spacer mt="50px" />
+
+          <Text ml={10} fontSize="lg"
+            fontWeight="bold" color="pink.700">
+            {TotalFriendRepo >= Totalrepo ?
+              <h1> {friendUsername + " is winner with " + TotalFriendRepo + " repos"}</h1> :
+              <h1> {username + " is winner " + Totalrepo + " repos"}</h1>}
+          </Text>
+
+          <Spacer mt="50px" />
+          <Alert status="success">
+            <AlertIcon />
+            This comaprison is only based on Repo count and nothing else 😅.
+            You both are gem 💎
+          </Alert>
+          <Spacer mt="100px" />
           <Box mt={5}>
             <Box height="10" align="center">
               <span>  <img onClick={() =>
@@ -236,7 +342,9 @@ const Profile = () => {
             </Box>
           </Box>
 
+
           <Spacer />
+
 
           <Box as="footer" role="contentinfo" mt="50px" mx="auto" maxW="7xl" py="12" px={{ base: '4', md: '8' }}>
 
