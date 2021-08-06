@@ -31,7 +31,7 @@ const Profile = () => {
   const toast = useToast()
 
   const [friendUsername, setFriendUsername] = useState("");
-  const [frienduserImg, setFrienduserImg] = useState("");
+  const [frienduserImg, setFrienduserImg] = useState("https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc2MjkxNzg1NDQwNTY4NTEw/cats-with-down-syndrome-reasons-why-your-cat-cant-have-down-syndrome.jpg");
 
 
   const [TotalFriendRepo, setfriendTotalrepo] = useState("");
@@ -252,13 +252,13 @@ const Profile = () => {
             fontWeight='extrabold' bgClip='text'
 
             bgGradient='linear(to-r, yellow.500, green.300, cyan.500)' >
-            Compare freinds stats
+            Compare friends stats
           </Heading>
           <Spacer mt="30px" />
           <Text
             ml={10} fontSize="m"
             fontWeight="bold" color="cyan.500">
-            mock compare with your friend stats
+            A Mock compare with your friend stats
           </Text>
           <Spacer mt="50px" />
           <Flex >
@@ -317,13 +317,13 @@ const Profile = () => {
           </Flex>
           <Spacer mt="50px" />
 
-          <Text ml={10} fontSize="lg"
+          {show === true && <Text ml={10} fontSize="lg"
             fontWeight="bold" color="pink.700">
             {TotalFriendRepo >= Totalrepo ?
               <h1> {friendUsername + " is winner with " + TotalFriendRepo + " repos"}</h1> :
-              <h1> {username + " is winner " + { Totalrepo } + " repos"}</h1>}
+              <h1> {username + " is winner " + Totalrepo + " repos"}</h1>}
           </Text>
-
+          }
           <Spacer mt="50px" />
 
           <Alert status="success">
