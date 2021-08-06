@@ -198,7 +198,7 @@ const Profile = () => {
             </Box>*/
 
             <>
-              <Center flexDirection="row" mt={8} boxShadow="inner">
+              <Center flexDirection={check ? "row" : "column"} mt={8} boxShadow="inner">
 
                 <Box p={6} ml={8} color="white" boxShadow="inner">
                   <Image src={userImg} />
@@ -261,8 +261,8 @@ const Profile = () => {
             mock compare with your friend stats
           </Text>
           <Spacer mt="50px" />
-          <flexDirection>
-            <InputGroup mt="25px" size="lg">
+          <Flex >
+            <InputGroup flexDirection={check ? "row" : "column"} mt="25px" size="lg">
               <InputLeftAddon pr={20} children={Name} />
               <Heading fontWeight='bold' bgClip='text'
                 size="lg" ml="5%" mr="5%"
@@ -277,7 +277,7 @@ const Profile = () => {
                 onChange={onFriendChangeHandler} variant="filled"
                 placeholder="Enter your fridn name here" />
             </InputGroup>
-          </flexDirection>
+          </Flex>
           <chakra.button
             shadow="lg" rounded="lg"
             px="3" py="2" bg="red.400"
@@ -291,21 +291,28 @@ const Profile = () => {
             <IconButton ml={1} w={5} h={7} icon={<FiSearch />} />
           </chakra.button>
           <Spacer mt="50px" />
-          <Flex>
-            <Box p="10" background="repeating-radial-gradient(
+
+
+          <Flex flexDirection={check ? "row" : "column"} >
+            <Box p="5" background="repeating-radial-gradient(
                 circle,gray,
                 purple 10px,
                  #4b026f 10px, 
                 #4b026f 20px)">
-              <Image boxSize="250px" objectFit="cover" src={userImg} />
+              <Image objectFit="cover" src={userImg} />
             </Box>
+            <Heading fontWeight='bold' bgClip='text'
+              size="lg" ml="5%" mr="5%"
+              bgGradient='linear(to-r, pink.500, pink.300, blue.500)'
+              align="center"
+            >  VS</Heading>
             <Spacer />
-            <Box p="10" bg="yellow.400" background="repeating-radial-gradient(
+            <Box p="5" bg="yellow.400" background="repeating-radial-gradient(
                 circle,gray,
                 purple 10px,
                  #4b026f 10px, 
                 #4b026f 20px)">
-              <Image boxSize="250px" objectFit="cover" src={frienduserImg} />
+              <Image objectFit="cover" src={frienduserImg} />
             </Box>
           </Flex>
           <Spacer mt="50px" />
@@ -314,10 +321,11 @@ const Profile = () => {
             fontWeight="bold" color="pink.700">
             {TotalFriendRepo >= Totalrepo ?
               <h1> {friendUsername + " is winner with " + TotalFriendRepo + " repos"}</h1> :
-              <h1> {username + " is winner " + Totalrepo + " repos"}</h1>}
+              <h1> {username + " is winner " + { Totalrepo } + " repos"}</h1>}
           </Text>
 
           <Spacer mt="50px" />
+
           <Alert status="success">
             <AlertIcon />
             This comaprison is only based on Repo count and nothing else 😅.
