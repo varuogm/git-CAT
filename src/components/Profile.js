@@ -11,7 +11,7 @@ import CAT from '../../src/Kitty.gif';
 import CATS from '../../src/Cats.png';
 
 const Profile = () => {
-  let GouravImage = "https://media-exp1.licdn.com/dms/image/C5603AQH_DYNV6F0IWw/profile-displayphoto-shrink_200_200/0/1622171286572?e=1629936000&v=beta&t=NfEqSgeobEWHkZUHm_VSvp5msuNO9rPkSpn_EJE4NZY";
+  let GouravImage = "https://ibb.co/8dZ8QMQ";
 
   const [username, setUsername] = useState("");
   const [loc, setLoc] = useState("?");
