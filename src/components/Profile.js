@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { Heading, Box, Text, chakra, Image } from "@chakra-ui/react";
-import { ButtonGroup, IconButton, Input, InputGroup, InputRightAddon, InputLeftAddon } from "@chakra-ui/react"
+import {
+  useMediaQuery, Tooltip
+  , Alert, AlertIcon, Flex, Center, Stack, Skeleton, VStack, useColorMode, Spacer, useToast, Heading, Box, Text, chakra, Image, ButtonGroup, IconButton, Input, InputGroup, InputRightAddon, InputLeftAddon
+} from "@chakra-ui/react";
 
 import { FaMoon, FaLinkedin, FaGithub, FaTwitter, FaLink } from 'react-icons/fa';
 import { FiZap, FiSearch } from "react-icons/fi";
-import { Flex, Center, Stack, Skeleton, VStack, useColorMode, Spacer, useToast } from "@chakra-ui/react"
-import { useMediaQuery, Tooltip } from "@chakra-ui/react";
-import { Alert, AlertIcon, } from "@chakra-ui/react";
 import CAT from '../../src/Kitty.gif';
 import CATS from '../../src/Cats.png';
 
 const Profile = () => {
-  
+
   let GouravImage = "https://i.ibb.co/b29dG1G/JEo6-Jh-S1-400x400.jpg";
 
   const [username, setUsername] = useState("");
@@ -66,13 +65,7 @@ const Profile = () => {
 
     const profile = await fetch(`https://api.github.com/users/${username}`);
     const profileJson = await profile.json();
-    //console.log(profile);
-    /*
-        const trendings = await fetch(`https://trendings.herokuapp.com/repo`);
-        const TrendingJson = await trendings.json();
-    
-        console.log(TrendingJson.items.repo_link)
-    */
+
     if (profileJson) {
       setLoc(profileJson.location);
       //setComapany(profileJson.company);
@@ -102,7 +95,6 @@ const Profile = () => {
   return (
     <>
       <>
-
         <VStack direction="0" p={4}  >
           <IconButton
             icon={colorMode === 'light' ? <FiZap /> : <FaMoon />}
@@ -162,42 +154,6 @@ const Profile = () => {
           {//horizontal card remaining
           }
           {show === true &&
-            /*<Box align="center" w="100%" p="5"  >
-              <Image align='left' src={userImg} w="20%" h="20%" />
- 
-              <Badge align="center" colorScheme="green">PRO</Badge>
-              <Text
-                ml={5}
-                textTransform=""
-                fontSize="sm"
-                fontWeight="bold"
-                color="pink.800">
-                {loc}
-              </Text>
-              <Text
-                ml={13}
-                fontSize="m"
-                fontWeight="bold"
-                color="yellow.500" >
-                todo stars - 99
-              </Text>
- 
- 
-              <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
-                {Bio}
-              </Text>
-              <Text mt={5}>Name - {Name} </Text>
-              <Text mt={5}>Followers - {followers} </Text>
-              <Text mt={5}>follwing  - {following} </Text>
-              <Text mt={5}>total repos - {Totalrepo}</Text>
-              <Flex mt={5} align="center">
-                <Box color="orange.400" />
-                <Text ml={1} fontSize="sm">
-                  <b>todo data</b> todo another data
-                </Text>
-              </Flex>
-            </Box>*/
-
             <>
               <Center flexDirection={check ? "row" : "column"} mt={8} boxShadow="inner">
 
@@ -208,16 +164,16 @@ const Profile = () => {
                 <Box p={6} ml={8} shadow="lg" rounded="lg" bg="white" boxShadow="inner"
                   px="3" py="2" bgGradient="linear(to-r,gray.400, pink.300,purple.400)" >
 
-                  <Text mt={0} fontSize="l" fontWeight="semibold" lineHeight="short">
+                  <Text color="black" mt={0} fontSize="l" fontWeight="semibold" lineHeight="short">
                     {Bio}
                   </Text>
 
-                  {Name !== "" && Name !== null && <Text mt={5}> {"Hi, i am " + Name + " !"}</Text>}
-                  <Text mt={5}>Followers - {followers} </Text>
-                  <Text mt={5}>Following  - {following} </Text>
-                  <Text mt={5}>Total Repos - {Totalrepo}</Text>
-                  {loc !== "" && <Text mt={5}> {"Location -" + loc}</Text>}
-                  {Bloglink !== "" && <Text mt={5}> {"Look on my blogs here- " + Bloglink}
+                  {Name !== "" && Name !== null && <Text color="black" mt={5}> {"Hi 👋, i am " + Name + " !"}</Text>}
+                  <Text color="black" mt={5}>👨‍🚀 Followers - {followers} </Text>
+                  <Text color="black" mt={5}>👨‍💻 Following  - {following} </Text>
+                  <Text color="black" mt={5}>🎒 Total Repos - {Totalrepo}</Text>
+                  {loc !== "" && <Text color="black" mt={5}> {"📍 Location -" + loc}</Text>}
+                  {Bloglink !== "" && <Text mt={5} color="black"> {"📚 Look on my blogs here- " + Bloglink}
                     <IconButton ml="15px" onClick={() => window.open(Bloglink, "_blank")} icon={<FaLink fontSize="10px" />} /></Text>}
                 </Box>
               </Center>
@@ -249,6 +205,9 @@ const Profile = () => {
             </Box>
           </Flex>
           <Spacer mt="50px" />
+
+          {/* comparison of frinds */}
+
           <Heading mt='0' mb='5' size='2xl'
             fontWeight='extrabold' bgClip='text'
 
@@ -293,29 +252,32 @@ const Profile = () => {
           </chakra.button>
           <Spacer mt="50px" />
 
+          <Center>
+            <Flex flexDirection={check ? "row" : "column"} >
+              <Box p="5" background="repeating-radial-gradient(
+                circle,gray,
+                purple 10px,
+                 #4b026f 10px, 
+                #4b026f 20px)">
+                <Image boxSize="350px"
+                  objectFit="cover" src={userImg} />
+              </Box>
+              <Heading fontWeight='bold' bgClip='text'
+                size="lg" ml="5%" mr="5%"
+                bgGradient='linear(to-r, pink.500, pink.300, blue.500)'
+                align="center"
+              >  VS</Heading>
 
-          <Flex flexDirection={check ? "row" : "column"} >
-            <Box p="5" background="repeating-radial-gradient(
+              <Box p="5" bg="yellow.400" background="repeating-radial-gradient(
                 circle,gray,
                 purple 10px,
                  #4b026f 10px, 
                 #4b026f 20px)">
-              <Image objectFit="cover" src={userImg} />
-            </Box>
-            <Heading fontWeight='bold' bgClip='text'
-              size="lg" ml="5%" mr="5%"
-              bgGradient='linear(to-r, pink.500, pink.300, blue.500)'
-              align="center"
-            >  VS</Heading>
-            <Spacer />
-            <Box p="5" bg="yellow.400" background="repeating-radial-gradient(
-                circle,gray,
-                purple 10px,
-                 #4b026f 10px, 
-                #4b026f 20px)">
-              <Image objectFit="cover" src={frienduserImg} />
-            </Box>
-          </Flex>
+                <Image boxSize="350px"
+                  objectFit="cover" src={frienduserImg} />
+              </Box>
+            </Flex>
+          </Center>
           <Spacer mt="50px" />
 
           {show === true && <Text ml={10} fontSize="lg"
