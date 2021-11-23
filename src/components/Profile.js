@@ -9,6 +9,14 @@ import { FiZap, FiSearch } from "react-icons/fi";
 import CAT from '../../src/Kitty.gif';
 import CATS from '../../src/Cats.png';
 
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react"
+
 const Profile = () => {
 
   let GouravImage = "https://i.ibb.co/b29dG1G/JEo6-Jh-S1-400x400.jpg";
@@ -295,6 +303,7 @@ const Profile = () => {
             You both are gem 💎
           </Alert>
           <Spacer mt="100px" />
+
           <Box mt={5}>
             <Box height="10" align="center">
               <span>  <img onClick={() =>
@@ -312,11 +321,43 @@ const Profile = () => {
               </Text>
             </Box>
           </Box>
+          <Spacer mb="200px" />
 
 
-          <Spacer />
 
+          {/* accordian  */}
+          <Accordion defaultIndex={[0]} allowMultiple>
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    Why its useful
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                It gives you a overall insight of a person github profile in one place
+              </AccordionPanel>
+            </AccordionItem>
 
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    How are the points being calculated
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                There are various parameters keeping in mind calcualting the most accurate result.
+                there are still more parameters we re working on.
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+
+          {/* accordiin end  */}
           <Box as="footer" role="contentinfo" mt="50px" mx="auto" maxW="7xl" py="12" px={{ base: '4', md: '8' }}>
 
             <Skeleton mt="70px" mb="20px" startColor="pink.500" endColor="orange.500" height="7px" />
@@ -347,6 +388,7 @@ const Profile = () => {
               </Text>
             </Stack>
           </Box>
+
 
 
         </div>
