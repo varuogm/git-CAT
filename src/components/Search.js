@@ -1,16 +1,15 @@
 import React from "react";
 import {
-  Spacer,
-  chakra,
-  IconButton,
   Input,
   InputGroup,
   InputLeftAddon,
+  IconButton,
+  chakra,
+  Spacer,
 } from "@chakra-ui/react";
-
 import { FiSearch } from "react-icons/fi";
 
-const SearchComponent = () => {
+const SearchInput = ({ username, onChangeHandler, submitHandler }) => {
   return (
     <>
       <InputGroup>
@@ -19,8 +18,8 @@ const SearchComponent = () => {
           className="prompt"
           boxShadow="inner"
           type="text"
-          //   value={username}
-          //   onChange={onChangeHandler}
+          value={username}
+          onChange={onChangeHandler}
           variant="filled"
           placeholder="Enter your username here"
         />
@@ -36,7 +35,7 @@ const SearchComponent = () => {
         type="submit"
         pl={5}
         boxShadow="inner"
-        // onClick={submitHandler}
+        onClick={submitHandler}
       >
         lets Find Out
         <IconButton ml={1} w={5} h={7} icon={<FiSearch />} />
@@ -46,4 +45,4 @@ const SearchComponent = () => {
   );
 };
 
-export default SearchComponent;
+export default SearchInput;
