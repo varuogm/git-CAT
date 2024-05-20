@@ -28,6 +28,8 @@ const Profile = () => {
   //TODO: 1. Add a new state variable called `friendUsername` and set it to an empty string
   //make object for similar data
   //use layout to set deafult items
+  const toast = useToast();
+  
   const [username, setUsername] = useState("");
   const [loc, setLoc] = useState("?");
   const [Bloglink, setBloglink] = useState("?");
@@ -45,7 +47,6 @@ const Profile = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const [check] = useMediaQuery("(min-width: 1025px)");
-  const toast = useToast();
 
   const [friendUsername, setFriendUsername] = useState("");
   const [frienduserImg, setFrienduserImg] = useState(
